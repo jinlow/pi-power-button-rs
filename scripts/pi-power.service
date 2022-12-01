@@ -1,0 +1,11 @@
+# Systemd script to start up the power button script.
+
+[Unit]
+Description=PiPowerButton
+After=network.target
+[Service]
+ExecStart=/usr/bin/sudo /home/pi/.cargo/bin/pi-power-button
+Restart=always
+User=pi
+[Install]
+WantedBy=multi-user.target
