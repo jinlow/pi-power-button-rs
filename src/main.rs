@@ -4,7 +4,6 @@ use rppal::gpio::{Gpio, Trigger};
 use rppal::system::DeviceInfo;
 use std::process::Command;
 
-// Gpio uses BCM pin numbering. BCM GPIO 23 is tied to physical pin 16.
 const GPIO_PIN: u8 = 3;
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -15,10 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     pin.poll_interrupt(true, None)?;
     let output = Command::new("shutdown")
         .args(["-h", "now"])
-        // .spawn()
         .output()
         .expect("Couldn't run shutdown command");
-    // println!("{}", std::str::from_utf8(&output.stdout).unwrap());
-    // println!("{}", std::str::from_utf8(&output.stderr).unwrap());
     Ok(())
 }
